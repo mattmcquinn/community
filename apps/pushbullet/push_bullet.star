@@ -22,6 +22,8 @@ def main(config):
     if token:
         user = get_current_user(token)
         msg = user
+        last_chat = get_last_chats(token)
+        # last_push = get_last_push(token)
     else:
         msg = "Unauthenticated"
     return render.Root(
@@ -45,6 +47,44 @@ def get_current_user(token):
     print(name)
 
     return name
+
+def get_last_chats(token):
+    resp = http.get(
+        url = "https://api.pushbullet.com/v2/chats?modified_afer=1694923679",
+        headers = {
+            "Access-Token": token,
+        },
+    )
+
+    if resp.status_code != 200:
+        fail("last_chats request failed with status code: %d - %s" %
+             (resp.status_code, resp.body()))
+
+    chats_json = resp.json()
+    print(chats_json)
+    last_chat = chats_json["chats"][0]
+    print(last_chat)
+
+    return last_chat
+
+def get_last_push(token):
+    resp = http.get(
+        url = "https://api.pushbullet.com/v2/pushes",
+        headers = {
+            "Access-Token": token,
+        },
+    )
+
+    if resp.status_code != 200:
+        fail("last pushes request failed with status code: %d - %s" %
+             (resp.status_code, resp.body()))
+
+    pushes_json = resp.json()
+    print(pushes_json)
+    last_push = pushes_json["pushes"][0]
+    print(last_push)
+
+    return last_push
 
 def oauth_handler(params):
     params = json.decode(params)
