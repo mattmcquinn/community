@@ -1,0 +1,8 @@
+---
+id: googlefit
+name: GoogleFit
+summary: Daily step count
+desc: Daily step count from Google Fit.
+author: mattmcquinn
+fileName: googlefit.star
+packageName: googlefit
