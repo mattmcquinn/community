@@ -25,7 +25,7 @@ def oauth_handler(params):
     res = http.post(url="https://oauth2.googleapis.com/token",
         headers={"Content-type": "application/x-www-form-urlencoded"},
         body="code=" + params["code"] + "&client_id=" + params["client_id"] + "&redirect_uri=" +
-        params["redirect_uri"] + "&grant_type=" + params["grant_type"] + "&client_secret=" + "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")
+        params["redirect_uri"] + "&grant_type=" + params["grant_type"] + "&client_secret=" + "")
 
     if res.status_code != 200:
         fail("token request failed with status code: %d - %s" %
