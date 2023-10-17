@@ -1,0 +1,8 @@
+---
+id: push-bullet
+name: Push Bullet
+summary: Sync with Push Bullet
+desc: Sync notifications with Push Bullet.
+author: mattmcquinn
+fileName: push_bullet.star
+packageName: pushbullet
